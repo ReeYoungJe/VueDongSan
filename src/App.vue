@@ -1,55 +1,61 @@
 <template>
 
-  <div class="black-bg" v-if="modal == true">
+  <div class="menu">
+    <a v-for="menuItems in menu" :key="menuItems">
+      {{ menuItems }}
+    </a>
+  </div>
+
+  <div class="black-bg" v-if="modal == true" >
     <div class="white-bg">
-      <a href="" @click="modalClose()">닫기</a>
-      <h4>상세페이지</h4>
-      <p>상세페이지 내용</p>
+      <img :src="apiData[index].image">
+      <h4>{{apiData[index].title}}</h4>
+      <p>{{ apiData[index].content }} </p>
+      <a href="#" @click.prevent="modal = false">닫기</a>
     </div>
   </div>
-  <div class="menu">
-    <a v-for="menuItems in menu" :key="menuItems">{{ menuItems }}</a>
-  </div>
-  <div v-for="(productItems, idx)  in 3" :key="productItems">
-    <img src="@/assets/room0.jpg">
-    <h4 @click="modalOpen()">{{ products[idx] }} 원룸</h4>
-    <p>{{ price[idx] }} 만원</p>
-    <button @click="increase(idx);">허위매물신고</button><span>신고수 : {{counts[idx]}} </span>
+
+  <div v-for="(productItems, idx)  in apiData" :key="productItems">
+    <a href="#" @click.prevent="modal = true; index = idx">
+      <img :src="apiData[idx].image">
+      <p>매물번호 : {{ apiData[idx].id }} </p>
+      <h4>{{ apiData[idx].title }}</h4>
+      <p>{{ apiData[idx].content }} </p>
+      <p>{{ apiData[idx].price }} 만원</p>
+    </a>
+
   </div>
 
 </template>
 
 <script>
+import data from './assets/data'
 export default {
   name: 'App',
   data() {
     return {
+      index : 0,
+      apiData : data,
       modal: false,
-      counts: [0,0,0],
       menu: ['Home', 'Shop', 'About'],
       price: ['60', '50', '40'],
       products: ['역삼동원룸', '천호동원룸', '마포구원룸']
     }
   },
   methods: {
-    increase(idx){
-     this.counts[idx] += 1;
-    },
-    modalOpen(){
-      this.modal = true;
-    },
-    modalClose(){
-      this.modal = false
-    },
+
   }
 }
 
 </script>
 
 <style>
-
+*{}
+a{list-style: none; text-decoration: none; color:#333;}
+img{width:100%; }
 body {
   margin : 0;
+  text-align: center;
 }
 div {
   box-sizing: border-box;
