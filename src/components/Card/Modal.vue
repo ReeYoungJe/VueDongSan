@@ -1,21 +1,21 @@
 <template>
-fff
-<!--  <div class="black-bg" v-if="popModal == true" >
+<div class="black-bg" v-if="popModal == true" >
     <div class="white-bg">
       <img :src="apiData[item].image">
       <h4>{{apiData[item].title}}</h4>
       <p>{{ apiData[item].content }} </p>
     </div>
-  </div>-->
+  </div>
 </template>
 
 <script>
 export default {
-  name: "ItemListPop",
+  name: "Modal",
   props : {
-    item : Number,
-    popModal : Boolean,
     apiData : Array,
+    item:Number,
+    popModal: Boolean,
+
 
   }
 }

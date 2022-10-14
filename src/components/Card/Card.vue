@@ -1,12 +1,11 @@
 <template>
-  <div v-for="(productItems, idx)  in apiData" :key="productItems">
-    <!--    <a href="#" @click.prevent="dddd = true; item = idx">-->
-    <img :src="apiData[idx].image">
-    <p>매물번호 : {{ apiData[idx].id  + 1}} </p>
-    <h4>{{ apiData[idx].title }}</h4>
-    <p>{{ apiData[idx].content }} </p>
-    <p>{{ apiData[idx].price }} 만원</p>
-    <!--    </a>-->
+
+  <div v-for="(productItems, idx)  in apiData" :key="idx" class="box-re">
+    <img :src="productItems.image">
+    <p>매물번호 : {{ productItems.id  + 1}} </p>
+    <h4 >{{ productItems.title }}</h4>
+    <p>{{ productItems.content }} </p>
+    <p>{{ productItems.price }} 만원</p>
   </div>
 </template>
 
@@ -18,8 +17,7 @@ export default {
 
   props : {
     item : Number,
-    popModal : Boolean,
-    apiData : Array,
+    apiData : Object,
 
   }
 }

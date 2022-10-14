@@ -7,7 +7,10 @@
   </div>
 
   <Discount/>
-  <Card :item="item" :apiData="apiData" :popModal="popModal"/>
+
+
+  <Modal :apiData="apiData" :popModal="popModal" :item="item"/>
+  <Card  :apiData="apiData" />
 
 </template>
 
@@ -15,11 +18,13 @@
 import data from './assets/data'
 import Discount from "@/components/Discount";
 import Card from "@/components/Card/Card";
+import Modal from "@/components/Card/Modal";
 
 
 export default {
   name: 'App',
   components: {
+    Modal,
     Card, Discount,
   },
   data() {
@@ -31,9 +36,7 @@ export default {
     }
   },
   methods: {
-    increase(idx) {
-      this.counts[idx] += 1;
-    },
+
   }
 }
 
@@ -86,4 +89,5 @@ div {
   color: white;
   padding: 10px;
 }
+.box-re{padding:10px; border: 1px solid #333; margin: 15px;}
 </style>
